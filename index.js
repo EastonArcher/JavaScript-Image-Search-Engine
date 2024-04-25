@@ -1,4 +1,6 @@
 import weaviate from 'weaviate-ts-client';
+import { readFileSync, readdirSync } from 'fs';
+
 
 const client = weaviate.client({
     scheme: 'http',
@@ -10,7 +12,7 @@ const schemaRes = await client.schema.getter().do();
 console.log(schemaRes);
 
 const schemaConfig = {
-    'class': 'Meme',
+    'class': 'imageOutput',
     'vectorizer': 'img2vec-neural',
     'vectorIndexType': 'hnsw',
     'moduleConfig': {
@@ -39,26 +41,42 @@ await client.schema
     .do();
 
 // Converting to base 64
-const img = readFileSync('./img/ross_meme.jpg');
+// const imgFiles = readdirSync('./img');
+// const promises = imgFiles.map(async(imgFile) => {
+//     const b64 = toBase64('./img/${imgFile');
+
+//     await client.data.creator()
+//         .withClassName('imageOutput')
+//         .withProperties({
+//             image: b64,
+//             text: imgFile.split('.')[0].split('_').join(' ')
+//         })
+//         .do();
+// })
+// await Promise.all(promises);
+
+const img = readFileSync('./img/ross_meme.jpeg');
 const b64 = Buffer.from(img).toString('base64');
 
 //Write to weaviate
-const red = await client.data.creator()
-    .withClassName('Images')
+const res = await client.data.creator()
+    .withClassName('imageOutput')
     .withProperties({
         image: b64,
-        text: 'Matrix Image'
+        text: 'matrix result'
     })
     .do();
 
+
+//Generating Result
 const test = Buffer.from(readFileSync('./test.jpg')).toString('base64');
 
 const resImage = await client.graphql.get()
-    .withClassName('Image')
+    .withClassName('imageOutput')
     .withFields(['image'])
     .withNearImage({image: test})
     .withLimit(1)
     .do();
 
-const result = resImage.data.Get.Image[0].image;
+const result = resImage.data.Get.imageOutput[0].image;
 writeFileSync('./result.jpg', result, 'base64');
