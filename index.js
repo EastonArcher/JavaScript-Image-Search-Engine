@@ -8,3 +8,33 @@ const client = weaviate.client({
 const schemaRes = await client.schema.getter().do();
 
 console.log(schemaRes);
+
+const schemaConfig = {
+    'class': 'Images',
+    'vectorizer': 'img2vec-neural',
+    'vectorIndexType': 'hnsw',
+    'moduleConfig': {
+        'img2vec-neural': {
+            'imageFields': [
+                'image'
+            ]
+        }
+    },
+    'properties': [
+        {
+            'name': 'image',
+            'dataType': ['blob']
+        },
+        {
+            'name': 'text',
+            'dataType': ['string']
+        }
+
+    ]
+}
+
+// Update Schema
+await client.schema
+    .classCreator()
+    .withClass(schemaConfig)
+    .do();
