@@ -50,3 +50,15 @@ const red = await client.data.creator()
         text: 'Matrix Image'
     })
     .do();
+
+const test = Buffer.from(readFileSync('./test.jpg')).toString('base64');
+
+const resImage = await client.graphql.get()
+    .withClassName('Image')
+    .withFields(['image'])
+    .withNearImage({image: test})
+    .withLimit(1)
+    .do();
+
+const result = resImage.data.Get.Image[0].image;
+writeFileSync('./result.jpg', result, 'base64');
