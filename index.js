@@ -7,9 +7,13 @@ const client = weaviate.client({
     host: 'localhost:8080',
 });
 
+// Delete all classes (schemas)
+// Uncomment to delete current classes
+//await client.schema.deleteAll();
+
 const schemaRes = await client.schema.getter().do();
 
-console.log(schemaRes);
+console.log(schemaRes)
 
 const schemaConfig = {
     'class': 'MemeImage',
@@ -34,48 +38,34 @@ const schemaConfig = {
     ]
 }
 
-// Update Schema
 await client.schema
     .classCreator()
     .withClass(schemaConfig)
     .do();
 
 // Converting to base 64
-const imgFiles = readdirSync('./img');
-const promises = imgFiles.map(async (imgFile) => {
-    const b64 = toBase64('./img/${imgFile}');
+const img = readFileSync('./img/programming_bell_curve.jpg');
 
-    await client.data.creator()
-        .withClassName('MemeImage')
-        .withProperties({
-            image: b64,
-            text: imgFile.split('.')[0].split('_').join(' ')
-        })
-        .do();
-})
+const b64 = Buffer.from(img).toString('base64');
 
-await Promise.all(promises);
-
-// const img = readFileSync('./img/programming_bell_curve.jpg');
-// const b64 = Buffer.from(img).toString('base64');
-// await client.data.creator()
-//     .withClassName('MemeImage')
-//     .withProperties({
-//         image: b64,
-//         text: 'matrix result'
-//     })
-//     .do();
+await client.data.creator()
+  .withClassName('MemeImage')
+  .withProperties({
+    image: b64,
+    text: 'matrix meme'
+  })
+  .do();
 
 //Generating Result
-const test = Buffer.from(readFileSync('./test.jpg')).toString('base64');
+const test = Buffer.from( readFileSync('./test.jpg') ).toString('base64');
 
 const resImage = await client.graphql.get()
-    .withClassName('MemeImage')
-    .withFields(['image'])
-    .withNearImage({image: test})
-    .withLimit(1)
-    .do();
+  .withClassName('MemeImage')
+  .withFields(['image'])
+  .withNearImage({ image: test })
+  .withLimit(1)
+  .do();
 
-//Write result to filesystem
+// Write result to filesystem
 const result = resImage.data.Get.MemeImage[0].image;
 writeFileSync('./result.jpg', result, 'base64');
