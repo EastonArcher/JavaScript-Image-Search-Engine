@@ -13,7 +13,7 @@ console.log(schemaRes)
 await client.schema.deleteAll();
 
 const schemaConfig = {
-    'class': 'MemeImage',
+    'class': 'Meme',
     'vectorizer': 'img2vec-neural',
     'vectorIndexType': 'hnsw',
     'moduleConfig': {
@@ -41,12 +41,12 @@ await client.schema
     .do();
 
 // Converting to base 64
-const img = readFileSync('./img/programming_bell_curve.jpg');
+const img = readFileSync('./img/terminal.jpg');
 
 const b64 = Buffer.from(img).toString('base64');
 
 await client.data.creator()
-  .withClassName('MemeImage')
+  .withClassName('Meme')
   .withProperties({
     image: b64,
     text: 'matrix meme'
@@ -57,12 +57,12 @@ await client.data.creator()
 const test = Buffer.from( readFileSync('./test.jpg') ).toString('base64');
 
 const resImage = await client.graphql.get()
-  .withClassName('MemeImage')
+  .withClassName('Meme')
   .withFields(['image'])
   .withNearImage({ image: test })
   .withLimit(1)
   .do();
 
 // Write result to filesystem
-const result = resImage.data.Get.MemeImage[0].image;
+const result = resImage.data.Get.Meme[0].image;
 writeFileSync('./result.jpg', result, 'base64');
