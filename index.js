@@ -12,7 +12,7 @@ const schemaRes = await client.schema.getter().do();
 console.log(schemaRes);
 
 const schemaConfig = {
-    'class': 'ReturnImg',
+    'class': 'MemeImage',
     'vectorizer': 'img2vec-neural',
     'vectorIndexType': 'hnsw',
     'moduleConfig': {
@@ -41,42 +41,41 @@ await client.schema
     .do();
 
 // Converting to base 64
-// const imgFiles = readdirSync('./img');
-// const promises = imgFiles.map(async(imgFile) => {
-//     const b64 = toBase64('./img/${imgFile');
+const imgFiles = readdirSync('./img');
+const promises = imgFiles.map(async (imgFile) => {
+    const b64 = toBase64('./img/${imgFile}');
 
-//     await client.data.creator()
-//         .withClassName('ReturnImg')
-//         .withProperties({
-//             image: b64,
-//             text: imgFile.split('.')[0].split('_').join(' ')
-//         })
-//         .do();
-// })
-// await Promise.all(promises);
+    await client.data.creator()
+        .withClassName('MemeImage')
+        .withProperties({
+            image: b64,
+            text: imgFile.split('.')[0].split('_').join(' ')
+        })
+        .do();
+})
 
-const img = readFileSync('./img/ross_meme.jpeg');
-const b64 = Buffer.from(img).toString('base64');
+await Promise.all(promises);
 
-//Write to weaviate
-const res = await client.data.creator()
-    .withClassName('ReturnImg')
-    .withProperties({
-        image: b64,
-        text: 'matrix result'
-    })
-    .do();
-
+// const img = readFileSync('./img/programming_bell_curve.jpg');
+// const b64 = Buffer.from(img).toString('base64');
+// await client.data.creator()
+//     .withClassName('MemeImage')
+//     .withProperties({
+//         image: b64,
+//         text: 'matrix result'
+//     })
+//     .do();
 
 //Generating Result
 const test = Buffer.from(readFileSync('./test.jpg')).toString('base64');
 
 const resImage = await client.graphql.get()
-    .withClassName('ReturnImg')
+    .withClassName('MemeImage')
     .withFields(['image'])
     .withNearImage({image: test})
     .withLimit(1)
     .do();
 
-const result = resImage.data.Get.ReturnImg[0].image;
+//Write result to filesystem
+const result = resImage.data.Get.MemeImage[0].image;
 writeFileSync('./result.jpg', result, 'base64');
