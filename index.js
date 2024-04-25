@@ -38,3 +38,15 @@ await client.schema
     .classCreator()
     .withClass(schemaConfig)
     .do();
+
+// Converting to base 64
+const img = readFileSync('./img/mountain.jpg');
+const b64 = Buffer.from(img).toString('base64');
+
+const red = await client.data.creator()
+    .withClassName('Images')
+    .withProperties({
+        image: b64,
+        text: 'Matrix Image'
+    })
+    .do();
