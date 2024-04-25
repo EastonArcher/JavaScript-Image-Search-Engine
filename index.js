@@ -10,7 +10,7 @@ const schemaRes = await client.schema.getter().do();
 console.log(schemaRes);
 
 const schemaConfig = {
-    'class': 'Images',
+    'class': 'Meme',
     'vectorizer': 'img2vec-neural',
     'vectorIndexType': 'hnsw',
     'moduleConfig': {
@@ -29,7 +29,6 @@ const schemaConfig = {
             'name': 'text',
             'dataType': ['string']
         }
-
     ]
 }
 
@@ -40,9 +39,10 @@ await client.schema
     .do();
 
 // Converting to base 64
-const img = readFileSync('./img/mountain.jpg');
+const img = readFileSync('./img/ross_meme.jpg');
 const b64 = Buffer.from(img).toString('base64');
 
+//Write to weaviate
 const red = await client.data.creator()
     .withClassName('Images')
     .withProperties({
