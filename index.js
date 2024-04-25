@@ -1,5 +1,5 @@
 import weaviate from 'weaviate-ts-client';
-import { readFileSync, readdirSync } from 'fs';
+import { readFileSync, readdirSync, writeFileSync } from 'fs';
 
 
 const client = weaviate.client({
@@ -12,7 +12,7 @@ const schemaRes = await client.schema.getter().do();
 console.log(schemaRes);
 
 const schemaConfig = {
-    'class': 'imageOutput',
+    'class': 'ReturnImg',
     'vectorizer': 'img2vec-neural',
     'vectorIndexType': 'hnsw',
     'moduleConfig': {
@@ -46,7 +46,7 @@ await client.schema
 //     const b64 = toBase64('./img/${imgFile');
 
 //     await client.data.creator()
-//         .withClassName('imageOutput')
+//         .withClassName('ReturnImg')
 //         .withProperties({
 //             image: b64,
 //             text: imgFile.split('.')[0].split('_').join(' ')
@@ -60,7 +60,7 @@ const b64 = Buffer.from(img).toString('base64');
 
 //Write to weaviate
 const res = await client.data.creator()
-    .withClassName('imageOutput')
+    .withClassName('ReturnImg')
     .withProperties({
         image: b64,
         text: 'matrix result'
@@ -72,11 +72,11 @@ const res = await client.data.creator()
 const test = Buffer.from(readFileSync('./test.jpg')).toString('base64');
 
 const resImage = await client.graphql.get()
-    .withClassName('imageOutput')
+    .withClassName('ReturnImg')
     .withFields(['image'])
     .withNearImage({image: test})
     .withLimit(1)
     .do();
 
-const result = resImage.data.Get.imageOutput[0].image;
+const result = resImage.data.Get.ReturnImg[0].image;
 writeFileSync('./result.jpg', result, 'base64');
