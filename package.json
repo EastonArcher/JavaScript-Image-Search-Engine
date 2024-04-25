@@ -1,7 +1,6 @@
 {
   "name": "javascript-image-search-engine",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -12,5 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "weaviate-ts-client": "^2.1.1"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
