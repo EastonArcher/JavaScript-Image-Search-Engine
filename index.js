@@ -1,19 +1,16 @@
-import weaviate from 'weaviate-ts-client';
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
-
+import weaviate from 'weaviate-ts-client';
 
 const client = weaviate.client({
     scheme: 'http',
     host: 'localhost:8080',
 });
 
-// Delete all classes (schemas)
-// Uncomment to delete current classes
-//await client.schema.deleteAll();
-
 const schemaRes = await client.schema.getter().do();
-
 console.log(schemaRes)
+
+// Delete all classes (schemas)
+await client.schema.deleteAll();
 
 const schemaConfig = {
     'class': 'MemeImage',
