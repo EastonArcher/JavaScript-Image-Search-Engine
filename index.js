@@ -14,7 +14,7 @@ console.log(schemaRes)
 // Delete all existing classes (schemas)
 await client.schema.deleteAll();
 
-// Image config settings
+// Configuring schema for a new class with image and text properties
 const schemaConfig = {
     'class': 'Meme',
     'vectorizer': 'img2vec-neural',
