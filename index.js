@@ -48,6 +48,7 @@ await client.schema
 const img = readFileSync('./img/terminal.jpg');
 const b64 = Buffer.from(img).toString('base64');
 
+// Creating a new data object
 await client.data.creator()
   .withClassName('Meme')
   .withProperties({
