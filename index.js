@@ -38,6 +38,7 @@ const schemaConfig = {
     ]
 }
 
+// Creating the '' class in weaviate with the predefined schema
 await client.schema
     .classCreator()
     .withClass(schemaConfig)
