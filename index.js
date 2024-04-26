@@ -12,6 +12,7 @@ console.log(schemaRes)
 // Delete all classes (schemas)
 await client.schema.deleteAll();
 
+// Image config settings
 const schemaConfig = {
     'class': 'Meme',
     'vectorizer': 'img2vec-neural',
@@ -65,4 +66,3 @@ const resImage = await client.graphql.get()
 // Write result to filesystem
 const result = resImage.data.Get.Meme[0].image;
 writeFileSync('./result.jpg', result, 'base64');
-
