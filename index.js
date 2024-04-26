@@ -42,7 +42,6 @@ await client.schema
 
 // Converting to base 64
 const img = readFileSync('./img/terminal.jpg');
-
 const b64 = Buffer.from(img).toString('base64');
 
 await client.data.creator()
