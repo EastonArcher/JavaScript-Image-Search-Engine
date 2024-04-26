@@ -60,6 +60,7 @@ await client.data.creator()
 // Converting test image file to base64 fomat
 const test = Buffer.from( readFileSync('./test.jpg') ).toString('base64');
 
+// Querying Weaviate to find similar images based on the test image
 const resImage = await client.graphql.get()
   .withClassName('Meme')
   .withFields(['image'])
