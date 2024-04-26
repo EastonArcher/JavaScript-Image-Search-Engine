@@ -57,7 +57,7 @@ await client.data.creator()
   })
   .do();
 
-//Generating Result
+// Converting test image file to base64 fomat
 const test = Buffer.from( readFileSync('./test.jpg') ).toString('base64');
 
 const resImage = await client.graphql.get()
