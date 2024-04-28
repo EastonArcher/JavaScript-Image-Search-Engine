@@ -69,6 +69,6 @@ const resImage = await client.graphql.get()
   .do();
 
 // Extract the result image and write it to the filesystem
-const result = resImage.data.Get.Meme[0].image;
+const result = resImage.data.Get.Image[0].image;
 writeFileSync('./result.jpg', result, 'base64');
 
