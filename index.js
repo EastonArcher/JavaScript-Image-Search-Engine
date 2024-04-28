@@ -1,3 +1,4 @@
+
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
 import weaviate from 'weaviate-ts-client';
 
@@ -71,4 +72,3 @@ const resImage = await client.graphql.get()
 // Extract the result image and write it to the filesystem
 const result = resImage.data.Get.Image[0].image;
 writeFileSync('./result.jpg', result, 'base64');
-
