@@ -1,4 +1,4 @@
-
+// Importing necessary libraries  a
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
 import weaviate from 'weaviate-ts-client';
 
