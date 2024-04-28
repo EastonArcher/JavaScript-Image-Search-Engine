@@ -1,4 +1,4 @@
-// Importing necessary libraries and weaviate
+// Importing necessary libraries and weaviate  
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
 import weaviate from 'weaviate-ts-client';
 
