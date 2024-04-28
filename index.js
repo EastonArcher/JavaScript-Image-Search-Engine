@@ -53,7 +53,7 @@ await client.data.creator()
   .withClassName('Image')
   .withProperties({
     image: b64,
-    text: 'matrix meme'
+    text: 'matrix img'
   })
   .do();
 
