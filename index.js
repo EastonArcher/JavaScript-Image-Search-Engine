@@ -16,7 +16,7 @@ await client.schema.deleteAll();
 
 // Configuring schema for a new class with image and text properties
 const schemaConfig = {
-    'class': 'Meme',
+    'class': 'Image',
     'vectorizer': 'img2vec-neural',
     'vectorIndexType': 'hnsw',
     'moduleConfig': {
@@ -50,7 +50,7 @@ const b64 = Buffer.from(img).toString('base64');
 
 // Creating a new data object
 await client.data.creator()
-  .withClassName('Meme')
+  .withClassName('Image')
   .withProperties({
     image: b64,
     text: 'matrix meme'
