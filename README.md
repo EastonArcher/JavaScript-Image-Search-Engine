@@ -1,4 +1,4 @@
-# WIP
+# Work In Progress
 
 <!--
 ## Image Search Engine
