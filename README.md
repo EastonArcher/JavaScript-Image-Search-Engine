@@ -1,4 +1,4 @@
-# Current work in progress - Come back later
+# 🚧 Current work in progress - Come back later 🚧
 
 <!--
 ## Image Search Engine
