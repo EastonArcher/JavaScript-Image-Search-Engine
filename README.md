@@ -1,10 +1,6 @@
 # WIP
 
-// ## Image Search Engine
-
+## Image Search Engine
 ## Weaviate
-
 ## Docker
-
 ## Dependencies
-
