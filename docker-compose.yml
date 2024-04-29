@@ -1,4 +1,5 @@
-## Potential connectivity issues between Docker and Weaviate?
+## Current Issue - potential connectivity issues between Docker and Weaviate?
+
 ---
 version: '3.4'
 services:
