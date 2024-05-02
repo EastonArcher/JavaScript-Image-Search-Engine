@@ -1,4 +1,4 @@
-# 🚧 WIP - Come back later 🚧
+# 🚧 WIP 🚧
 
 <!--
 ## Image Search Engine
