@@ -45,7 +45,7 @@ await client.schema
     .withClass(schemaConfig)
     .do();
 
-// 
+// Read from entire img folder
 // const imgFiles = readdirSync('./img');
 // const promises = imgFiles.map(async (imgfile) => {
 //     const b64 = toBase64('./img/${imgFile}');
