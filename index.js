@@ -51,6 +51,9 @@ const promises = imgFiles.map(async (imgfile) => {
 
     await client.data.creator()
     .withClassName('Image')
+    .withProperties({
+        image: b64,
+        text: imgFile.split('.')
 
 // Converting the image to base 64 format
 const img = readFileSync('./img/terminal.jpg');
