@@ -45,6 +45,9 @@ await client.schema
     .withClass(schemaConfig)
     .do();
 
+//const imgFiles = readdirSync('./img');
+
+
 // Converting the image to base 64 format
 const img = readFileSync('./img/terminal.jpg');
 const b64 = Buffer.from(img).toString('base64');
