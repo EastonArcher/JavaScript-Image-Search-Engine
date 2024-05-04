@@ -12,7 +12,7 @@ const client = weaviate.client({
 const schemaRes = await client.schema.getter().do();
 console.log(schemaRes)
 
-// Delete all existing classes (schemas)
+// Delete all existing classes (schemas) 
 await client.schema.deleteAll();
 
 // Configuring schema for a new class with image and text properties
