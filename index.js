@@ -45,18 +45,19 @@ await client.schema
     .withClass(schemaConfig)
     .do();
 
-const imgFiles = readdirSync('./img');
-const promises = imgFiles.map(async (imgfile) => {
-    const b64 = toBase64('./img/${imgFile}');
+// 
+// const imgFiles = readdirSync('./img');
+// const promises = imgFiles.map(async (imgfile) => {
+//     const b64 = toBase64('./img/${imgFile}');
 
-    await client.data.creator()
-    .withClassName('Image')
-    .withProperties({
-        image: b64,
-        text: imgFile.split('.')[0].split('_').join(' ')
-    })
-    .do();
-})
+//     await client.data.creator()
+//     .withClassName('Image')
+//     .withProperties({
+//         image: b64,
+//         text: imgFile.split('.')[0].split('_').join(' ')
+//     })
+//     .do();
+// })
 
 // Converting the image to base 64 format
 const img = readFileSync('./img/terminal.jpg');
