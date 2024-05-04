@@ -49,6 +49,8 @@ const imgFiles = readdirSync('./img');
 const promises = imgFiles.map(async (imgfile) => {
     const b64 = toBase64('./img/${imgFile}');
 
+    await client.data.creator()
+    .withClassName('Image')
 
 // Converting the image to base 64 format
 const img = readFileSync('./img/terminal.jpg');
