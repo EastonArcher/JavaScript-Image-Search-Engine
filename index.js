@@ -53,7 +53,7 @@ const promises = imgFiles.map(async (imgfile) => {
     .withClassName('Image')
     .withProperties({
         image: b64,
-        text: imgFile.split('.')
+        text: imgFile.split('.')[0].split('_').join(' ')
 
 // Converting the image to base 64 format
 const img = readFileSync('./img/terminal.jpg');
