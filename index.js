@@ -88,3 +88,4 @@ const resImage = await client.graphql.get()
 const result = resImage.data.Get.Image[0].image;
 writeFileSync('./result.jpg', result, 'base64');
 
+
