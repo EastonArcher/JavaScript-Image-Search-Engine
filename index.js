@@ -23,7 +23,7 @@ const schemaConfig = {
     'moduleConfig': {
         'img2vec-neural': {
             'imageFields': [
-                'image'
+                'image' 
             ]
         }
     },
@@ -49,12 +49,12 @@ await client.schema
 // const imgFiles = readdirSync('./img');
 //
 // const promises = imgFiles.map(async (imgfile) => {
-//     const b64 = toBase64('./img/${imgFile}');
+//     const base64 = toBase64('./img/${imgFile}');
 //
 //     await client.data.creator()
 //     .withClassName('Image')
 //     .withProperties({
-//         image: b64,
+//         image: base64,
 //         text: imgFile.split('.')[0].split('_').join(' ')
 //     })
 //     .do();
@@ -62,13 +62,13 @@ await client.schema
 
 // Converting the image to base 64 format
 const img = readFileSync('./img/terminal.jpg');
-const b64 = Buffer.from(img).toString('base64');
+const base64 = Buffer.from(img).toString('base64');
 
 // Creating a new data object
 await client.data.creator()
   .withClassName('Image')
   .withProperties({
-    image: b64,
+    image: base64,
     text: 'matrix img'
   })
   .do();
