@@ -49,7 +49,6 @@ await client.schema
 // const imgFiles = readdirSync('./img');
 //
 // const promises = imgFiles.map(async (imgfile) => {
-//     const b64 = toBase64('./img/${imgFile}');
 //
 //     await client.data.creator()
 //     .withClassName('Image')
