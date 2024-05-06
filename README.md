@@ -1,4 +1,4 @@
-# 🚧 This repo is a WIP 🏗️
+# 🚧 This repo is a work in progress 🏗️
 
 <!--
 ## Image Search Engine
