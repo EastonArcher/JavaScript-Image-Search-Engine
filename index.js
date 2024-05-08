@@ -8,7 +8,7 @@ const client = weaviate.client({
     host: 'localhost:8080',
 });
 
-// Why are docker & weave not connecting???
+// Why are docker & weaviate not connecting???
 
 // Fetch current schema from Weaviate and then logging it
 const schemaRes = await client.schema.getter().do();
