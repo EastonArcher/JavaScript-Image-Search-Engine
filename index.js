@@ -1,6 +1,6 @@
 // Importing necessary libraries and weaviate  
 import { readFileSync, readdirSync, writeFileSync } from 'fs';
-import weaviate from 'weaviate-ts-client'
+import weaviate from 'weaviate-ts-client';
 
 // Setting up Weaviate client
 const client = weaviate.client({
